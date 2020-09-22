@@ -1,9 +1,14 @@
+var lukeSkywalker = require('./data/person-1.json')
+var leiaOrgana = require('./data/person-5.json')
+var obiWanKenobi = require('./data/person-10.json')
 /*
 
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
 */
+
+const { films } = require("./data/fixtures-bundle")
 
 /**
  * ### Challenge `getName`
@@ -29,8 +34,7 @@ function getName(character) {
  * Sample data expected output: 5
  */
 function getFilmCount(character) {
-  // TODO: Add your code inside the functions (others below).
-
+ return character.films.length
 }
 
 /**
@@ -42,8 +46,13 @@ function getFilmCount(character) {
  * If length is 0. Return 'none'
 */
 function getSecondStarshipName(character) {
-  // TODO: Add your code here.
+  if(character.starships.length > 0){
+  return character.starships[1].name
+  }else{
+    return "none"
+  }
 }
+
 
 /**
  * ### Challenge `getSummary`
@@ -55,7 +64,7 @@ function getSecondStarshipName(character) {
  *    Result: `Luke Skywalker, 172cm, 77kg. Featured in 5 films.`
  */
 function getSummary(character) {
-  // TODO: Add your code here.
+  return `${character.name}, ${character.height}cm, ${character.mass}kg. Featured in ${character.films.length} films.`
 }
 
 /**
@@ -67,7 +76,14 @@ function getSummary(character) {
  * Sample data expected output: 8000
 */
 function getVehiclesCostInCreditsSumTotal(character) {
-  // TODO: Add your code here.
+  const vehicleCreditCost = character.filter(function(item){
+    return item.cost_in_credits
+  });
+  vehicleCreditCost.reduce(function(accumulator, item){
+    return accumulator + item.cost_in_credits
+  },0);
+
+
 }
 
 /**
@@ -81,7 +97,8 @@ function getVehiclesCostInCreditsSumTotal(character) {
  * Sample data expected output: 27
 */
 function getStarshipPassengerAndCrewSumTotal(character) {
-  // TODO: Add your code here.
+  const starshipCrewCount = character.vehicles.crew
+  const starshipPassengerCount = character.vehicles.passengers
 }
 
 /**
@@ -97,8 +114,14 @@ function getStarshipPassengerAndCrewSumTotal(character) {
  * Given film #1, expected output: `A New Hope`
  * Given film #7, expected error: `There are only 3 Star Wars movies. Flan fiction excluded.`
 */
+const filmNumber = character.films[]
 function getNthFilm(character, filmNumber) {
-  // TODO: Add your code here.
+
+  if(filmNumber >= 1 && filmNumber <= 3){
+    return character.films[];
+  }else {
+    return `There are only 3 Star Wars movies. Flan fiction excluded.`
+  }
 }
 
 /**
